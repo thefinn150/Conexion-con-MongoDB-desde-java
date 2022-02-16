@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="349.0" prefWidth="560.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.PrincipalController">
+   <children>
+      <TextField fx:id="txtDB" layoutX="463.0" layoutY="37.0" prefHeight="25.0" prefWidth="129.0" />
+      <ImageView fitHeight="73.0" fitWidth="255.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/mongologo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="326.0" layoutY="44.0" text="Bienvenido">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCollection" layoutX="465.0" layoutY="78.0" prefHeight="25.0" prefWidth="129.0" />
+      <TabPane layoutY="120.0" prefHeight="275.0" prefWidth="620.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Insertar">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="189.0" layoutY="15.0" text="Inserte valor" />
+                        <TextField fx:id="txtValorInsertar" layoutX="189.0" layoutY="29.0" />
+                        <Button fx:id="btnInsertar" layoutX="364.0" layoutY="29.0" mnemonicParsing="false" onAction="#insertar" text="Insertar" />
+                        <Label layoutX="22.0" layoutY="14.0" text="Inserte la clave" />
+                        <TextField fx:id="txtClaveInsertar" layoutX="22.0" layoutY="29.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Actualizar">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtDatoViejo" layoutX="30.0" layoutY="83.0" />
+                        <TextField fx:id="txtDatoNuevo" layoutX="199.0" layoutY="83.0" />
+                        <Button fx:id="btnActualizar" layoutX="367.0" layoutY="83.0" mnemonicParsing="false" onAction="#actualizar" text="Actualizar" />
+                        <Label layoutX="30.0" layoutY="66.0" text="Dato Viejo" />
+                        <Label layoutX="199.0" layoutY="66.0" text="Dato Nuevo" />
+                        <Label layoutX="30.0" layoutY="14.0" text="Clave" />
+                        <TextField fx:id="txtClaveActualizar" layoutX="30.0" layoutY="31.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Eliminar">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="55.0" layoutY="32.0" text="Introduzca la clave" />
+                        <Label layoutX="211.0" layoutY="32.0" text="Valor que va a eliminar" />
+                        <TextField fx:id="txtClaveEliminar" layoutX="55.0" layoutY="49.0" prefWidth="138.0" />
+                        <TextField fx:id="txtValorEliminar" layoutX="211.0" layoutY="49.0" />
+                        <Button fx:id="btnEliminar" layoutX="390.0" layoutY="49.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Buscar">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnBuscar" layoutX="488.0" layoutY="111.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+                        <TextArea fx:id="txtBusqueda" layoutX="46.0" layoutY="54.0" prefHeight="157.0" prefWidth="345.0" />
+                        <TextField fx:id="txtValorBusqueda" layoutX="464.0" layoutY="76.0" prefHeight="25.0" prefWidth="99.0" />
+                        <Button fx:id="btnMostrar" layoutX="485.0" layoutY="186.0" mnemonicParsing="false" onAction="#mostrar" text="Mostrar" />
+                        <Label layoutX="499.0" layoutY="55.0" text="Valor" />
+                        <Label layoutX="46.0" layoutY="38.0" text="Resultado" />
+                        <Label layoutX="500.0" layoutY="6.0" text="Clave" />
+                        <TextField fx:id="txtClaveBusqueda" layoutX="465.0" layoutY="26.0" prefHeight="25.0" prefWidth="98.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Label layoutX="463.0" layoutY="62.0" prefHeight="17.0" prefWidth="129.0" text="Ingresa la coleccion" />
+      <Label layoutX="462.0" layoutY="21.0" prefHeight="8.0" prefWidth="129.0" text="Ingresa la base de datos" />
+   </children>
+</AnchorPane>
