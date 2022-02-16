@@ -1,0 +1,132 @@
+package controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+
+public class PrincipalController implements Initializable {
+@FXML
+    private TextField txtDB;
+
+    @FXML
+    private TextField txtCollection;
+
+    @FXML
+    private TextField txtValorInsertar;
+
+    @FXML
+    private Button btnInsertar;
+
+    @FXML
+    private TextField txtClaveInsertar;
+
+    @FXML
+    private TextField txtDatoViejo;
+
+    @FXML
+    private TextField txtDatoNuevo;
+
+    @FXML
+    private Button btnActualizar;
+
+    @FXML
+    private TextField txtClaveActualizar;
+
+    @FXML
+    private TextField txtClaveEliminar;
+
+    @FXML
+    private TextField txtValorEliminar;
+
+    @FXML
+    private Button btnEliminar;
+
+    @FXML
+    private Button btnBuscar;
+
+    @FXML
+    private TextArea txtBusqueda;
+
+    @FXML
+    private TextField txtValorBusqueda;
+
+    @FXML
+    private Button btnMostrar;
+
+    @FXML
+    private TextField txtClaveBusqueda;
+    
+    String DB = "";
+    String collection = "", clave ="", valor="", accionVieja="", accionNueva="";
+   
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+    }    
+    
+    public void elejir(){
+      DB = txtDB.getText();
+      collection = txtCollection.getText();
+    }
+    
+    public void mostrar(){
+    elejir();
+    Conexion conec= new Conexion(DB,collection);
+    txtBusqueda.setText(conec.Mostrar());
+    }
+    
+    
+    public void buscar(){
+    elejir();
+    valor = txtValorBusqueda.getText();
+    clave = txtClaveBusqueda.getText();
+    Conexion conec= new Conexion(DB,collection);
+    txtBusqueda.setText(conec.Buscar(clave,valor));
+    valor="";
+    clave="";
+    
+}
+    
+    public void insertar(){
+    elejir();
+    Conexion conec= new Conexion(DB,collection);
+    valor = txtValorInsertar.getText();
+    clave = txtClaveInsertar.getText();
+    conec.insertar(clave, valor);
+    valor="";
+    clave="";
+    Alert alert = new Alert(Alert.AlertType.INFORMATION,"insertada con exito");
+    alert.showAndWait();
+    }
+    
+    public void eliminar(){
+    elejir();
+    Conexion conec= new Conexion(DB,collection);
+    valor = txtValorEliminar.getText();
+    clave = txtClaveEliminar.getText();
+    conec.Eliminar(clave, valor);
+    valor="";
+    clave="";
+    Alert alert = new Alert(Alert.AlertType.INFORMATION,"eliminacion con exito");
+    alert.showAndWait();
+    }
+    
+    public void actualizar(){
+    elejir();
+    Conexion conec= new Conexion(DB,collection);
+    clave = txtClaveActualizar.getText();
+    accionVieja = txtDatoViejo.getText();
+    accionNueva=txtDatoNuevo.getText();
+    
+    conec.Actualizar(clave, accionVieja, accionNueva);
+    
+    valor="";
+    accionVieja="";
+    accionNueva="";
+    Alert alert = new Alert(Alert.AlertType.INFORMATION,"actualizacion con exito");
+    alert.showAndWait();
+    }
+}
