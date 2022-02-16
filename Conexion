@@ -1,0 +1,64 @@
+package controller;
+
+import com.mongodb.*;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public class Conexion {
+DB BaseDatos;
+DBCollection coleccion;
+BasicDBObject document= new BasicDBObject();
+    
+
+public Conexion(String DB, String Collection){
+    try{
+        Mongo mongo = new Mongo("localhost",27017);
+        BaseDatos= mongo.getDB(DB);
+        coleccion=BaseDatos.getCollection(Collection);
+    }catch(UnknownHostException ex){
+        Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE,null,ex);
+    }
+}
+
+
+public boolean insertar(String clave, String valor){
+document.put(clave,valor);
+coleccion.insert(document);
+return true;
+}
+
+String resultado = "";
+
+public String  Mostrar(){
+resultado ="";
+DBCursor cursor= coleccion.find();
+while(cursor.hasNext()){
+    resultado = resultado + "\n" + cursor.next();
+}
+return resultado;
+}
+
+public String  Buscar(String clave , String valor){
+resultado ="";
+document.put(clave,valor);
+DBCursor cursor= coleccion.find(document);
+while(cursor.hasNext()){
+    resultado = resultado + "\n" + cursor.next();
+}
+return resultado;
+}
+
+public boolean Actualizar(String clave, String accionVieja, String accionNueva){
+    document.put(clave,accionVieja);
+    BasicDBObject documentoNuevo = new BasicDBObject();
+    documentoNuevo.put(clave,accionNueva);
+    coleccion.findAndModify(document,documentoNuevo);
+return true;
+}
+
+public boolean Eliminar(String clave, String valor){
+document.put(clave,valor);
+coleccion.remove(document);
+return true;
+}
+}
